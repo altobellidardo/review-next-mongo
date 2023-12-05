@@ -21,6 +21,12 @@ async function ReviewPage ({ params }) {
 
   const user = await getUsername(review.userId)
 
+  const creation = new Date(review.createdAt)
+  const creationStr = `${creation.getDate()}/${creation.getMonth() + 1}/${creation.getFullYear()} ${creation.getHours()}:${creation.getMinutes()}`
+
+  const update = new Date(review.updatedAt)
+  const updateStr = `${update.getDate()}/${update.getMonth() + 1}/${update.getFullYear()} ${update.getHours()}:${update.getMinutes()}`
+
   return (
     <main className='mx-auto w-[80%]'>
       <section className='w-80 mx-auto'>
@@ -52,8 +58,8 @@ async function ReviewPage ({ params }) {
         </div>
 
         <div>
-          <p>Created at: {review.createdAt}</p>
-          <p>Updated at: {review.updatedAt}</p>
+          <p>Created at: {creationStr}</p>
+          <p>Updated at: {updateStr}</p>
           <p>Created by: {user.username}</p>
         </div>
       </section>
