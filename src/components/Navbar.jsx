@@ -2,18 +2,26 @@
 
 import Link from 'next/link'
 import { IconPencilPlus } from '@tabler/icons-react'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
 import './NavBar.css'
 
 function Navbar () {
   const pathname = usePathname()
   const { status } = useSession()
+  const router = useRouter()
 
   const loggedIn = status === 'authenticated'
   const showCreate = pathname !== '/create' && status === 'authenticated'
   const showUser = pathname !== '/user'
   const showAuth = pathname !== '/auth/login' && pathname !== '/auth/register'
+
+  const handleSignOut = () => {
+    signOut({ redirect: false }).then(() => {
+      router.push('/')
+      router.refresh()
+    })
+  }
 
   return (
     <nav className='flex items-center justify-between p-4'>
@@ -36,7 +44,7 @@ function Navbar () {
                   showUser &&
                     <Link href='/user' className='NavBarButton'>User</Link>
                 }
-                <button onClick={() => signOut()} className='NavBarButton'>
+                <button onClick={handleSignOut} className='NavBarButton'>
                   Signout
                 </button>
               </>
