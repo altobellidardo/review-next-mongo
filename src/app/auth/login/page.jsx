@@ -21,11 +21,9 @@ function LoginPage () {
     const nextAuthRes = await signIn('credentials', {
       username: data.username,
       password: data.password,
-      redirect: false
-    }, {
       callbackUrl: '/'
     })
-    if (nextAuthRes.error) setError(nextAuthRes.error)
+    if (nextAuthRes?.error) setError(nextAuthRes.error)
   }
 
   return (
