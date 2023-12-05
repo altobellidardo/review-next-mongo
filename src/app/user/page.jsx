@@ -5,7 +5,7 @@ function UserPage () {
   const { data: session, status } = useSession()
 
   const creation = new Date(session?.user?.createdAt)
-  const creationStr = creation.getDate() + '/' + creation.getMonth() + 1 + '/' + creation.getFullYear()
+  const creationStr = `${creation.getDate()}/${creation.getMonth() + 1}/${creation.getFullYear()}`
 
   return (
     <main className='flex flex-col items-center'>
