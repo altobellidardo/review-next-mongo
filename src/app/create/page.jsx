@@ -72,7 +72,7 @@ function CreatePage () {
         <Stars key={item} prop={item} data={data} setData={setData} />
       ))}
 
-      <button type='submit' className='w-80 bg-slate-700 py-3 rounded-xl flex gap-2 justify-center hover:text-slate-700 hover:bg-slate-400'>
+      <button type='submit' className='w-80 bg-slate-700 py-2 rounded-xl flex gap-2 justify-center hover:text-slate-700 hover:bg-slate-400'>
         Submit
         <IconSend width='20px' />
       </button>

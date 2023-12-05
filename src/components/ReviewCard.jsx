@@ -6,7 +6,7 @@ import './ReviewCard.css'
 
 function ReviewCard ({ review }) {
   return (
-    <div className='flex flex-col bg-slate-600 p-4 rounded-md text-sm'>
+    <div className='flex flex-col border-slate-700 border-4 p-4 rounded-xl text-sm'>
       <div className='ml-10 w-[70%]'>
         <p>Resto:</p>
         <p className='text-xl mb-3'> {review.Restaurant[0].toUpperCase() + review.Restaurant.slice(1)}</p>

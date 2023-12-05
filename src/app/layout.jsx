@@ -1,5 +1,6 @@
 import { Barlow } from 'next/font/google'
 import Navbar from '@/components/Navbar'
+import Providers from '@/libs/Providers'
 import './globals.css'
 
 const barlow = Barlow({ subsets: ['latin'], weight: ['600', '800'] })
@@ -13,8 +14,10 @@ export default function RootLayout ({ children }) {
   return (
     <html lang='en'>
       <body className={barlow.className + ' bg-slate-900 text-white max-w-screen-md mx-auto'}>
-        <Navbar />
-        {children}
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
       </body>
     </html>
   )

@@ -44,11 +44,11 @@ async function ReviewPage ({ params }) {
         </div>
       </section>
 
-      <div className='flex flex-col mt-6 gap-2'>
-        <Link className='bg-slate-700 py-3 rounded-xl flex gap-2 justify-center hover:text-slate-700 hover:bg-slate-400' href={`/update/${review._id}`}>
+      <div className='flex flex-col mt-6 gap-2 w-80 mx-auto'>
+        <Link className='bg-slate-700 py-2 rounded-xl flex gap-2 justify-center hover:text-slate-700 hover:bg-slate-400' href={`/update/${review._id}`}>
           Update <IconEdit width='20px' />
         </Link>
-        <DeleteButton id={review._id} stylesProp='bg-slate-700 py-3 rounded-xl flex gap-2 justify-center hover:text-slate-700 hover:bg-slate-400' />
+        <DeleteButton id={review._id} stylesProp='bg-slate-700 py-2 rounded-xl flex gap-2 justify-center hover:text-slate-700 hover:bg-slate-400' />
       </div>
     </main>
   )

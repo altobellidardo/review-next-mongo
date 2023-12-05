@@ -7,23 +7,26 @@ const fetchReviews = async () => {
   return data
 }
 export default async function Home () {
-  const reviews = await fetchReviews()
+  try {
+    const reviews = await fetchReviews()
+    if (reviews.length === 0) {
+      return (
+        <p className='text-xl italic mt-2 w-full text-center px-20'>
+          No reviews yet, click the pen icon to add one
+        </p>
+      )
+    }
 
-  if (reviews.length === 0) {
     return (
-      <p className='text-xl italic mt-2 w-full text-center px-20'>
-        No reviews yet, click the pen icon to add one
-      </p>
+      <main className='grid px-5 md:grid-cols-2 gap-3 mb-2'>
+        {
+          reviews.map(review => (
+            <ReviewCard key={review._id} review={review} />
+          ))
+        }
+      </main>
     )
+  } catch (error) {
+    return <p className='text-center mt-6 text-lg'>Something went wrong</p>
   }
-
-  return (
-    <main className='grid px-5 md:grid-cols-2 gap-5 mb-4'>
-      {
-        reviews.map(review => (
-          <ReviewCard key={review._id} review={review} />
-        ))
-      }
-    </main>
-  )
 }

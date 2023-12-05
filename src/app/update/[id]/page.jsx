@@ -90,11 +90,11 @@ export default function Page ({ params }) {
         ))}
 
         <div className='flex flex-col gap-2'>
-          <button type='submit' className='w-80 bg-slate-700 py-3 rounded-xl flex gap-2 justify-center hover:text-slate-700 hover:bg-slate-400'>
+          <button type='submit' className='w-80 bg-slate-700 py-2 rounded-xl flex gap-2 justify-center hover:text-slate-700 hover:bg-slate-400'>
             Save
             <IconSend width={20} />
           </button>
-          <DeleteButton id={review._id} stylesProp='w-80 bg-slate-700 py-3 rounded-xl flex gap-2 justify-center hover:text-slate-700 hover:bg-slate-400' />
+          <DeleteButton id={review._id} stylesProp='w-80 bg-slate-700 py-2 rounded-xl flex gap-2 justify-center hover:text-slate-700 hover:bg-slate-400' />
         </div>
       </form>
     </main>

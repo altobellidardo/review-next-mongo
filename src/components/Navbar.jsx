@@ -12,12 +12,25 @@ function Navbar () {
       <Link href='/'>
         <h1 className='text-3xl font-bold'>Review App</h1>
       </Link>
-      {
-        pathname !== '/create' &&
-          <Link href='/create'>
-            <IconPencilPlus />
-          </Link>
-      }
+
+      <div className='flex gap-4'>
+        {
+          pathname !== '/create' &&
+            <Link href='/create'>
+              <IconPencilPlus />
+            </Link>
+        }
+        <Link href='/user'>User</Link>
+        <Link href='/auth/register'>
+          Register
+        </Link>
+        <Link href='/api/auth/signout'>
+          Signout
+        </Link>
+        <Link href='/api/auth/signin'>
+          Signin
+        </Link>
+      </div>
     </nav>
   )
 }
