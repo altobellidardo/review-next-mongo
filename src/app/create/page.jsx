@@ -28,7 +28,6 @@ function CreatePage () {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    console.log(session.user._id)
     const info = {
       userId: session.user._id,
       ...data
