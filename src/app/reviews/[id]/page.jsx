@@ -9,9 +9,17 @@ const fetchReview = async (id) => {
   const data = await res.json()
   return data
 }
+const getUsername = async (id) => {
+  const res = await fetch(process.env.HOST + '/api/user/' + id, { cache: 'no-store' })
+  if (!res.ok) throw new Error('Failed to fetch data')
+  const data = await res.json()
+  return data
+}
 
 async function ReviewPage ({ params }) {
   const review = await fetchReview(params.id)
+
+  const user = await getUsername(review.userId)
 
   return (
     <main className='mx-auto w-[80%]'>
@@ -41,6 +49,12 @@ async function ReviewPage ({ params }) {
         <div className='my-2 flex justify-between'>
           <p>Enviroment:</p>
           <Stars number={review.Enviroment} extend />
+        </div>
+
+        <div>
+          <p>Created at: {review.createdAt}</p>
+          <p>Updated at: {review.updatedAt}</p>
+          <p>Created by: {user.username}</p>
         </div>
       </section>
 

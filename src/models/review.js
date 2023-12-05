@@ -34,6 +34,11 @@ const ReviewSchema = new Schema({
     min: 0,
     max: 5,
     required: [true, 'Review must have a enviroment rating']
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'user',
+    required: [true, 'Review must belong to a user']
   }
 }, {
   timestamps: true

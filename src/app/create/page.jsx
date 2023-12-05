@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { IconSend } from '@tabler/icons-react'
 import Stars from '@/components/StarsInput'
 import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 
 const INITIAL_DATA = {
   Restaurant: '',
@@ -17,6 +18,7 @@ const INITIAL_DATA = {
 function CreatePage () {
   const [data, setData] = useState(INITIAL_DATA)
   const router = useRouter()
+  const { data: session } = useSession()
 
   const handleInput = (e) => {
     const { id, value } = e.target
@@ -26,9 +28,15 @@ function CreatePage () {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    console.log(session.user._id)
+    const info = {
+      userId: session.user._id,
+      ...data
+    }
+
     await fetch('/api/reviews', {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify(info),
       headers: {
         'Content-Type': 'application/json'
       }
