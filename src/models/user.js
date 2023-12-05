@@ -19,6 +19,8 @@ const UserSchema = new Schema({
     required: [true, 'Password is required'],
     select: false
   }
+}, {
+  timestamps: true
 })
 
 export default models.User || model('User', UserSchema)

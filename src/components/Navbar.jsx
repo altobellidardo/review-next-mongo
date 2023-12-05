@@ -21,7 +21,7 @@ function Navbar () {
         <h1 className='text-3xl font-bold'>Review App</h1>
       </Link>
 
-      <div className='flex gap-4'>
+      <div className='flex gap-2'>
         {
           showCreate &&
             <Link href='/create' className='NavBarButton'>

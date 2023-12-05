@@ -23,7 +23,8 @@ const handler = nextAuth({
         const user = {
           _id: userFound._id,
           username: userFound.username,
-          email: userFound.email
+          email: userFound.email,
+          createdAt: userFound.createdAt
         }
         return user
       }
