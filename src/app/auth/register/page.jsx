@@ -35,7 +35,10 @@ export default function RegisterPage () {
         password: data.password,
         redirect: false
       })
-      if (nextAuthRes?.ok) return router.push('/')
+      if (nextAuthRes?.ok) {
+        router.push('/')
+        router.refresh()
+      }
     } catch (error) {
       const errorObj = JSON.parse(error.message)
       setError(errorObj.message)

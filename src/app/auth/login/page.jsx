@@ -25,8 +25,10 @@ function LoginPage () {
       password: data.password,
       redirect: false
     })
-    if (nextAuthRes?.ok) return router.push('/')
-    else setError(nextAuthRes.error)
+    if (nextAuthRes?.ok) {
+      router.push('/')
+      router.refresh()
+    } else setError(nextAuthRes.error)
   }
 
   return (
