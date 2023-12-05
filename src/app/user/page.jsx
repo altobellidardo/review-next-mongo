@@ -9,8 +9,14 @@ function UserPage () {
       <h1 className='text-xl'>User Page</h1>
       {status === 'loading' && <p>Loading...</p>}
       {status === 'unauthenticated' && <p>Please sign in</p>}
-      <p>username: {session?.user?.username}</p>
-      <p>email: {session?.user?.email}</p>
+      {
+        status === 'authenticated' && (
+          <>
+            <p>username: {session?.user?.username}</p>
+            <p>email: {session?.user?.email}</p>
+          </>
+        )
+      }
     </main>
   )
 }

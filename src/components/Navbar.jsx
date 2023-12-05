@@ -3,9 +3,17 @@
 import Link from 'next/link'
 import { IconPencilPlus } from '@tabler/icons-react'
 import { usePathname } from 'next/navigation'
+import { signOut, useSession } from 'next-auth/react'
+import './NavBar.css'
 
 function Navbar () {
   const pathname = usePathname()
+  const { status } = useSession()
+
+  const loggedIn = status === 'authenticated'
+  const showCreate = pathname !== '/create' && status === 'authenticated'
+  const showUser = pathname !== '/user'
+  const showAuth = pathname !== '/auth/login' && pathname !== '/auth/register'
 
   return (
     <nav className='flex items-center justify-between p-4'>
@@ -15,21 +23,31 @@ function Navbar () {
 
       <div className='flex gap-4'>
         {
-          pathname !== '/create' &&
-            <Link href='/create'>
+          showCreate &&
+            <Link href='/create' className='NavBarButton'>
               <IconPencilPlus />
             </Link>
         }
-        <Link href='/user'>User</Link>
-        <Link href='/auth/register'>
-          Register
-        </Link>
-        <Link href='/api/auth/signout'>
-          Signout
-        </Link>
-        <Link href='/api/auth/signin'>
-          Signin
-        </Link>
+        {
+          loggedIn
+            ? (
+              <>
+                {
+                  showUser &&
+                    <Link href='/user' className='NavBarButton'>User</Link>
+                }
+                <button onClick={() => signOut()} className='NavBarButton'>
+                  Signout
+                </button>
+              </>
+              )
+            : (
+                showAuth &&
+                  <Link href='/auth/login' className='NavBarButton'>
+                    Login / Register
+                  </Link>
+              )
+        }
       </div>
     </nav>
   )

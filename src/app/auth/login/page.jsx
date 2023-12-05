@@ -1,12 +1,12 @@
 'use client'
 
-import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import '../styles.css'
 
-export default function RegisterPage () {
+function LoginPage () {
   const [errorState, setError] = useState(null)
   const router = useRouter()
 
@@ -20,31 +20,18 @@ export default function RegisterPage () {
       password: formData.get('password')
     }
 
-    try {
-      const res = await fetch('/api/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      })
-
-      if (res.ok) setError(null)
-      else throw new Error(await res.text())
-
-      const nextAuthRes = await signIn('credentials', {
-        username: data.username,
-        password: data.password,
-        redirect: false
-      })
-      if (nextAuthRes?.ok) return router.push('/')
-    } catch (error) {
-      const errorObj = JSON.parse(error.message)
-      setError(errorObj.message)
-    }
+    const nextAuthRes = await signIn('credentials', {
+      username: data.username,
+      password: data.password,
+      redirect: false
+    })
+    if (nextAuthRes?.ok) return router.push('/')
+    else setError(nextAuthRes.error)
   }
 
   return (
     <main className='auth'>
-      <h1>Register</h1>
+      <h1>Login</h1>
 
       <form onSubmit={handleSubmit}>
         {errorState &&
@@ -58,22 +45,19 @@ export default function RegisterPage () {
           name='username'
         />
         <input
-          type='email'
-          placeholder='Email'
-          name='email'
-        />
-        <input
           type='password'
           placeholder='Password'
           name='password'
         />
         <button type='submit'>
-          Register
+          Login
         </button>
       </form>
-      <Link href='/auth/login' className='text-blue-500 opacity-50 hover:opacity-100 underline'>
-        go to Login
+      <Link href='/auth/register' className='text-blue-500 opacity-50 hover:opacity-100 underline'>
+        go to Register
       </Link>
     </main>
   )
 }
+
+export default LoginPage
