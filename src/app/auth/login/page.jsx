@@ -2,13 +2,11 @@
 
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import '../styles.css'
 
 function LoginPage () {
   const [errorState, setError] = useState(null)
-  const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -24,9 +22,10 @@ function LoginPage () {
       username: data.username,
       password: data.password,
       redirect: false
+    }, {
+      callbackUrl: '/'
     })
-    if (nextAuthRes?.ok) return router.replace('/')
-    else setError(nextAuthRes.error)
+    if (nextAuthRes.error) setError(nextAuthRes.error)
   }
 
   return (

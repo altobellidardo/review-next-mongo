@@ -3,12 +3,10 @@
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import '../styles.css'
 
 export default function RegisterPage () {
   const [errorState, setError] = useState(null)
-  const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -30,12 +28,13 @@ export default function RegisterPage () {
       if (res.ok) setError(null)
       else throw new Error(await res.text())
 
-      const nextAuthRes = await signIn('credentials', {
+      await signIn('credentials', {
         username: data.username,
         password: data.password,
         redirect: false
+      }, {
+        callbackUrl: '/'
       })
-      if (nextAuthRes?.ok) return router.push('/')
     } catch (error) {
       const errorObj = JSON.parse(error.message)
       setError(errorObj.message)
