@@ -16,7 +16,7 @@ function Navbar () {
   const showAuth = pathname !== '/auth/login' && pathname !== '/auth/register'
 
   const handleSignOut = () => {
-    signOut({ callbackUrl: '/auth/login' })
+    signOut()
   }
 
   return (
@@ -37,8 +37,7 @@ function Navbar () {
             ? (
               <>
                 {
-                  showUser &&
-                    <Link href='/user' className='NavBarButton'>User</Link>
+                  showUser && <Link href='/user' className='NavBarButton'>User</Link>
                 }
                 <button onClick={handleSignOut} className='NavBarButton'>
                   Signout
