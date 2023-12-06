@@ -24,7 +24,8 @@ function LoginPage () {
       const res = await signIn('credentials', {
         username: data.username,
         password: data.password,
-        redirect: false
+        redirect: false,
+        callbackUrl: '/'
       })
       if (res.ok) {
         setError(null)
