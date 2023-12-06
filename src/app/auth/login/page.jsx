@@ -29,7 +29,6 @@ function LoginPage () {
       if (res.ok) {
         setError(null)
         router.push('/')
-        router.refresh()
       } else throw new Error(res.error)
     } catch (error) {
       setError(error.message)
