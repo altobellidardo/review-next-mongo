@@ -25,7 +25,9 @@ async function ReviewPage ({ params }) {
   const creationStr = `${creation.getDate()}/${creation.getMonth() + 1}/${creation.getFullYear()} ${creation.getHours()}:${creation.getMinutes()}`
 
   const update = new Date(review.updatedAt)
-  const updateStr = `${update.getDate()}/${update.getMonth() + 1}/${update.getFullYear()} ${update.getHours()}:${update.getMinutes()}`
+  let updateStr = `${update.getDate()}/${update.getMonth() + 1}/${update.getFullYear()} ${update.getHours()}:${update.getMinutes()}`
+
+  if (creationStr === updateStr) updateStr = undefined
 
   return (
     <main className='mx-auto w-[80%]'>
@@ -57,11 +59,20 @@ async function ReviewPage ({ params }) {
           <Stars number={review.Enviroment} extend />
         </div>
 
-        <div>
-          <p>Created at: {creationStr}</p>
-          <p>Updated at: {updateStr}</p>
-          <p>Last change by: {user.username}</p>
-        </div>
+        <p className='flex justify-between'>
+          <span>Created at:</span>
+          <span>{creationStr}</span>
+        </p>
+        {updateStr && (
+          <p className='flex justify-between'>
+            <span>Update at:</span>
+            <span>{updateStr}</span>
+          </p>
+        )}
+        <p className='flex justify-between'>
+          <span>Last change by:</span>
+          <span>{user.username}</span>
+        </p>
       </section>
 
       <div className='flex flex-col mt-6 gap-2 w-80 mx-auto'>
