@@ -17,7 +17,7 @@ function Navbar () {
   const showAuth = pathname !== '/auth/login' && pathname !== '/auth/register'
 
   const handleSignOut = () => {
-    signOut({ redirect: false }).then(() => {
+    signOut({ callbackUrl: '/auth/login' }).then(() => {
       router.push('/')
       router.refresh()
     })
