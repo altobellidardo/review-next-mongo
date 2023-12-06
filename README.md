@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Review App
 
-## Getting Started
+🔗 URL: https://review-next-mongo.vercel.app/
 
-First, run the development server:
+## Descripción
+
+Este repositorio es un CRUD (create/read/update/delete) de reseñas. Esta hecho en Nextjs, un framework de react que permite tener hacer full-stack apps usando server side components. Esta página esta hecha como muestra de ejemplo conectando todas las partes, base de datos, API, renderizado y autentificación. 
+
+## Características
+
+- Vinculación Review con usuario
+- Autentificación
+- Encryptación de contraseña
+- Rutas protegidas
+- Reviews compartibles
+- Diseño responsive
+
+## Tecnologías utilizadas
+
+- [Nextjs](https://nextjs.org/)
+- [MongoDB](https://www.mongodb.com/)
+- [Insomia](https://insomnia.rest/) API client for testing
+- [NextAuth](https://next-auth.js.org/)
+- [Tailwind](https://tailwindcss.com/)
+- [Standard JS](https://www.npmjs.com/package/standard) JavaScript style guide, linter, and formatter
+- [Bcryptjs](https://www.npmjs.com/package/bcryptjs)
+
+### Funcionalidad
+
+- [x] Creación de Reviews.
+
+- [x] Actualización de Reviews.
+
+- [x] Eliminación de Reviews.
+
+- [x] Visualización de Reviews.
+
+- [X] Persistencia de Datos.
+
+- [x] Despliegue.
+
+- [ ] Testeo.
+
+
+### Desafíos a futuro
+
+- [ ] Estado del Review publico/privado.
+
+- [ ] Filtrado por calificaciones.
+
+- [ ] Filtrado por fechas.
+
+- [ ] Agrupar reviews por restaurant.
+
+- [ ] Comentarios en cada review.
+
+- [ ] calificaciones a los usuarios por otros usuarios.
+
+## Configurar proyecto
+
+1. Clonar el repositorio
+
+```bash
+git clone https://github.com/altobellidardo/review-next-mongo
+```
+
+2. Ir al proyecto
+
+```bash
+cd review-next-mongo
+```
+
+3. Instalar dependiencias
+
+```bash
+npm install
+```
+
+4. Correr el proyecto
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Abrir el proyecto en el navegador
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+🔗 [http://localhost:3000/](http://localhost:3000/)
