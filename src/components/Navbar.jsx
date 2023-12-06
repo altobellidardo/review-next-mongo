@@ -2,14 +2,13 @@
 
 import Link from 'next/link'
 import { IconPencilPlus } from '@tabler/icons-react'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
 import './NavBar.css'
 
 function Navbar () {
   const pathname = usePathname()
   const { status } = useSession()
-  const router = useRouter()
 
   const loggedIn = status === 'authenticated'
   const showCreate = pathname !== '/create' && status === 'authenticated'
@@ -17,10 +16,7 @@ function Navbar () {
   const showAuth = pathname !== '/auth/login' && pathname !== '/auth/register'
 
   const handleSignOut = () => {
-    signOut({ callbackUrl: '/auth/login' }).then(() => {
-      router.push('/')
-      router.refresh()
-    })
+    signOut({ callbackUrl: '/auth/login' })
   }
 
   return (
