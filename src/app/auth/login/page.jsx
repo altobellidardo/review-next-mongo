@@ -4,9 +4,11 @@ import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useState } from 'react'
 import '../styles.css'
+import { useRouter } from 'next/navigation'
 
 function LoginPage () {
   const [errorState, setError] = useState(null)
+  const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -18,12 +20,20 @@ function LoginPage () {
       password: formData.get('password')
     }
 
-    const nextAuthRes = await signIn('credentials', {
-      username: data.username,
-      password: data.password,
-      callbackUrl: '/'
-    })
-    if (nextAuthRes?.error) setError(nextAuthRes.error)
+    try {
+      const res = await signIn('credentials', {
+        username: data.username,
+        password: data.password,
+        redirect: false
+      })
+      if (res.ok) {
+        setError(null)
+        router.push('/')
+        router.refresh()
+      } else throw new Error(res.error)
+    } catch (error) {
+      setError(error.message)
+    }
   }
 
   return (
