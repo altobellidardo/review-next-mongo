@@ -24,13 +24,11 @@ function LoginPage () {
       const res = await signIn('credentials', {
         username: data.username,
         password: data.password,
-        redirect: false,
-        callbackUrl: '/'
+        redirect: false
       })
       if (res.ok) {
         setError(null)
         router.push('/')
-        router.refresh()
       } else throw new Error(res.error)
     } catch (error) {
       setError(error.message)
