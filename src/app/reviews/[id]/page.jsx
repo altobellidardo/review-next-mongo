@@ -60,7 +60,7 @@ async function ReviewPage ({ params }) {
         <div>
           <p>Created at: {creationStr}</p>
           <p>Updated at: {updateStr}</p>
-          <p>Created by: {user.username}</p>
+          <p>Last change by: {user.username}</p>
         </div>
       </section>
 
