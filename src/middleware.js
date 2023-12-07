@@ -9,6 +9,9 @@ const isPrivate = (path) => {
 }
 
 const authMiddleware = withAuth(
+  // Note that this callback is only invoked if
+  // the `authorized` callback has returned `true`
+  // and not for pages listed in `pages`.
   function onSuccess (req) {
     console.log('entering a private route')
   },
@@ -30,5 +33,7 @@ export default function middleware (req) {
   return NextResponse.next()
 }
 export const config = {
-  matcher: ['/', '/create', '/update/:path*', '/reviews/:path*', '/user']
+  // Skip all paths that covered by the middleware. This example skips the
+  // folders "api", "_next" and all files with an extension (e.g. favicon.ico)
+  matcher: ['/((?!api|_next|.*\\..*|.svg|.png|auth/login).*)']
 }
