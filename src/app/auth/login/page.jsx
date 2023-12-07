@@ -28,6 +28,12 @@ function LoginPage () {
         callbackUrl: '/'
       })
       if (res.ok) {
+        await signIn('credentials', {
+          username: data.username,
+          password: data.password,
+          redirect: false,
+          callbackUrl: '/'
+        })
         setError(null)
         router.push('/')
       } else throw new Error(res.error)
